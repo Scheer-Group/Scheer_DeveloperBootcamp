@@ -1,4 +1,4 @@
-@cats = http://localhost:4004/hcql/catalog
+@cats = http://localhost:4004/hcql/browse
 @admin = http://localhost:4004/hcql/admin
 
 
@@ -23,7 +23,7 @@ Content-Type: text/plain
   }
 
 
-### AdmingService.read Authors 
+### AdminService.read Authors 
 POST {{admin}}
 Authorization: Basic alice:
 Content-Type: text/plain
