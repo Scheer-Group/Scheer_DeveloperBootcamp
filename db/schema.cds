@@ -1,24 +1,23 @@
 using { Currency, cuid, managed, sap } from '@sap/cds/common';
 namespace sap.capire.bookshop;
 
-entity Books : managed {
-  key ID   : Integer;
-  author   : Association to Authors @mandatory;
-  title    : localized String @mandatory;
-  descr    : localized String(2000);
-  genre    : Association to Genres;
-  stock    : Integer;
-  price    : Price;
-  currency : Currency;
+entity Books : cuid, managed {
+  author   : Association to Authors @mandatory  @title: '{i18n>Book.author}';
+  title    : localized String @mandatory        @title: '{i18n>Book.title}';
+  descr    : localized String(2000)             @title: '{i18n>Book.descr}';
+  genre    : Association to Genres              @title: '{i18n>Book.genre}';
+  stock    : Integer                            @title: '{i18n>Book.stock}';
+  price    : Price                              @title: '{i18n>Book.price}';
+  currency : Currency                           @title: '{i18n>Book.currency}';
 }
 
 entity Authors : managed {
-  key ID       : Integer;
-  name         : String @mandatory;
-  dateOfBirth  : Date;
-  dateOfDeath  : Date;
-  placeOfBirth : String;
-  placeOfDeath : String;
+  key ID       : Integer  @title: '{i18n>Author.ID}';
+  name         : String @mandatory @title: '{i18n>Author.name}';
+  dateOfBirth  : Date   @title: '{i18n>Author.dateOfBirth}';
+  dateOfDeath  : Date   @title: '{i18n>Author.dateOfDeath}';
+  placeOfBirth : String @title: '{i18n>Author.placeOfBirth}';
+  placeOfDeath : String @title: '{i18n>Author.placeOfDeath}';
   books        : Association to many Books on books.author = $self;
 }
 
