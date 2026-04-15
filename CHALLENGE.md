@@ -16,6 +16,8 @@ Expose at minimum the Business Partner ID and full name. Delegate reads to the r
 
 **Verify:** Open the CAP index page (`cds watch`) and confirm you can browse Business Partner data.
 
+> Reference: [Expose Remote Services with Associations](https://cap.cloud.sap/docs/guides/services/consuming-services#expose-remote-services-with-associations)
+
 ---
 
 ## Challenge 2 — Order Data Model
@@ -44,6 +46,8 @@ Below those, show the order items in a table with book and quantity.
 
 Keep it basic for now — no calculated amounts, no value helps beyond what Fiori generates automatically, no action buttons.
 
+> Use the **SAP Fiori Tools** VS Code extension to generate the app: run `Fiori: Open Application Generator`, choose the `List Report Page` template, and point it at the local CAP project.
+
 **Verify:** Run `cds watch`, open the app, create a draft order with a few items, and activate it.
 
 ---
@@ -69,6 +73,17 @@ Each order item should display a calculated amount (quantity × book price). The
 In the UI, changing the book or quantity on an item should immediately refresh both the item amount and the order net amount — no page reload required.
 
 **Verify:** Create an order with two items. Change the quantity of one. Confirm both the item amount and the order net amount update live in the UI.
+
+> Tip: Use `@Common.SideEffects` on the `OrderItems` entity to declare which source properties trigger which targets to refresh. You can reference the parent entity as a target:
+> ```cds
+> annotate service.OrderItems with @(
+>   Common.SideEffects #netAmountUpdate: {
+>     SourceProperties: ['book_ID', 'quantity'],
+>     TargetProperties: ['netAmount'],
+>     TargetEntities  : [order],
+>   }
+> );
+> ```
 
 ---
 
