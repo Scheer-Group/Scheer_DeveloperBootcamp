@@ -7,8 +7,6 @@ using {
   sap
 } from '@sap/cds/common';
 
-using {businessPartner as external} from '../srv/external/businessPartner';
-
 entity Books : cuid, managed {
   author   : Association to Authors  @mandatory  @title: '{i18n>Book.author}';
   title    : localized String        @mandatory  @title: '{i18n>Book.title}';
@@ -36,25 +34,3 @@ entity Genres : cuid, sap.common.CodeList {
   children : Composition of many Genres
                on children.parent = $self;
 }
-
-entity Orders : cuid, managed {
-  orderDate : Date                                          @mandatory  @title: '{i18n>Order.orderDate}';
-  customer  : Association to one external.A_BusinessPartner @title: '{i18n>Order.customer}' @mandatory;
-  status    : Association to OrderStatuses default 'NEW'    @title: '{i18n>Order.status}';
-  currency  : Currency                                      @title: '{i18n>Order.currency}';
-  netAmount : Decimal(9, 2) default 0                       @title: '{i18n>Order.netAmount}';
-  items     : Composition of many OrderItems
-                on items.order = $self;
-}
-
-entity OrderItems : cuid {
-  order    : Association to Orders @mandatory;
-  book     : Association to Books  @mandatory  @title: '{i18n>OrderItem.book}';
-  quantity : Integer               @mandatory  @title: '{i18n>OrderItem.quantity}';
-}
-
-entity OrderStatuses : sap.common.CodeList {
-  key code : String(20);
-}
-
-annotate Books with @fiori.draft.enabled;

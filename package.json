@@ -31,10 +31,7 @@
     "app/*"
   ],
   "sapux": [
-    "app/project1",
-    "app/project2",
-    "app/com.scheer.book",
-    "app/com.scheer.order"
+    "app/com.scheer.book"
   ],
   "cds": {
     "requires": {
