@@ -8,18 +8,26 @@
               "tiles": [
                 {
                   "id": "tile-manage-authors",
-                  "title": "Manage Authors",
                   "tileType": "sap.ushell.ui.tile.StaticTile",
                   "properties": {
+                    "title": "Manage Authors",
                     "targetURL": "#Author-manage"
                   }
                 },
                 {
                   "id": "tile-manage-books",
-                  "title": "Manage Books",
                   "tileType": "sap.ushell.ui.tile.StaticTile",
                   "properties": {
+                    "title": "Manage Books",
                     "targetURL": "#Book-manage"
+                  }
+                },
+                {
+                  "id": "tile-manage-orders",
+                  "tileType": "sap.ushell.ui.tile.StaticTile",
+                  "properties": {
+                    "title": "Manage Orders",
+                    "targetURL": "#Order-manage"
                   }
                 }
               ]
@@ -52,8 +60,22 @@
               "title": "Manage Books",
               "resolutionResult": {
                 "applicationType": "SAPUI5",
-                "additionalInformation": "SAPUI5.Component=project2",
-                "url": "../project2/webapp"
+                "additionalInformation": "SAPUI5.Component=com.scheer.book",
+                "url": "../com.scheer.book/webapp"
+              },
+              "signature": {
+                "parameters": {},
+                "additionalParameters": "allowed"
+              }
+            },
+            "ManageOrders": {
+              "semanticObject": "Order",
+              "action": "manage",
+              "title": "Manage Orders",
+              "resolutionResult": {
+                "applicationType": "SAPUI5",
+                "additionalInformation": "SAPUI5.Component=com.scheer.order",
+                "url": "../com.scheer.order/webapp"
               },
               "signature": {
                 "parameters": {},

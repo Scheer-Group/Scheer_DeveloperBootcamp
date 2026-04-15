@@ -5,3 +5,5 @@ node_modules
 gen/
 _out/
 *.mta
+.cdsrc-private.json
+db.sqlite

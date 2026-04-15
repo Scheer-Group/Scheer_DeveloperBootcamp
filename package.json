@@ -9,22 +9,22 @@
     "db",
     "index.cds"
   ],
-  "devDependencies": {
-    "@cap-js/sqlite": "^2.1.1",
-    "cds-plugin-ui5": "^0.13.0"
-  },
   "dependencies": {
-    "@sap/cds": "^9.6.2",
     "@sap-cloud-sdk/connectivity": "^4",
     "@sap-cloud-sdk/http-client": "^4",
-    "@sap-cloud-sdk/resilience": "^4"
+    "@sap-cloud-sdk/resilience": "^4",
+    "@sap/cds": "^9.6.2"
+  },
+  "devDependencies": {
+    "@cap-js/cds-test": "^0.4.1",
+    "@cap-js/sqlite": "^2.1.1",
+    "jest": "^29.7.0",
+    "prettier": "3.8.2"
   },
   "scripts": {
     "start": "cds-serve",
     "watch": "cds watch",
-    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-project2": "cds watch --open project2/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-com.scheer.book": "cds watch --open com.scheer.book/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "test": "jest --testPathPattern=test/"
   },
   "license": "Apache-2.0",
   "workspaces": [
@@ -33,13 +33,27 @@
   "sapux": [
     "app/project1",
     "app/project2",
-    "app/com.scheer.book"
+    "app/com.scheer.book",
+    "app/com.scheer.order"
   ],
   "cds": {
     "requires": {
       "businessPartner": {
         "kind": "odata-v2",
         "model": "srv/external/businessPartner"
+      },
+      "db": {
+        "[development]": {
+          "credentials": {
+            "url": "./db/data/db.sqlite"
+          },
+          "schema_evolution": "auto"
+        },
+        "[test]": {
+          "credentials": {
+            "url": ":memory:"
+          }
+        }
       }
     }
   }
