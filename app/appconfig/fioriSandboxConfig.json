@@ -1,0 +1,46 @@
+{
+  "services": {
+    "LaunchPage": {
+      "adapter": {
+        "config": {
+          "groups": [
+            {
+              "tiles": [
+                {
+                  "id": "tile-manage-books",
+                  "tileType": "sap.ushell.ui.tile.StaticTile",
+                  "properties": {
+                    "title": "Manage Books",
+                    "targetURL": "#Book-manage"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "ClientSideTargetResolution": {
+      "adapter": {
+        "config": {
+          "inbounds": {
+            "ManageBooks": {
+              "semanticObject": "Book",
+              "action": "manage",
+              "title": "Manage Books",
+              "resolutionResult": {
+                "applicationType": "SAPUI5",
+                "additionalInformation": "SAPUI5.Component=com.scheer.book",
+                "url": "../com.scheer.book/webapp"
+              },
+              "signature": {
+                "parameters": {},
+                "additionalParameters": "allowed"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

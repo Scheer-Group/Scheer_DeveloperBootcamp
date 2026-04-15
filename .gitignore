@@ -1,0 +1,9 @@
+package-lock.json
+node_modules
+.DS_Store
+.env
+gen/
+_out/
+*.mta
+.cdsrc-private.json
+db.sqlite
